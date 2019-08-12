@@ -1,1 +1,2 @@
 $('#test').html('sdsdfsdfsdfdsf');
+$('#post_comments_<%= params[:post_id] %>').hide().html('<%= j render partial: "index", collection: @comments, as: :comment %>').hide().fadeIn("slow");
