@@ -68,6 +68,22 @@ class TranslatesController < ApplicationController
     Translate.find(params[:id]).repeit(argument)
   end
 
+  def search_result
+    selector = params[:translate][:word].downcase
+    @translates = Translate.or( 
+      { word: /.*#{selector}.*/ },
+      { translate: /.*#{selector}.*/ }
+    )
+
+    respond_to do |format|
+      if @translates.empty?
+        format.html { render :no_result}
+      else
+        format.html { render :search_result}
+      end
+    end
+  end
+
   # DELETE /translates/1
   # DELETE /translates/1.json
   def destroy
