@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Word:</strong>
+  <%= @translate.word %>
+</p>
+
+<p>
+  <strong>Translate:</strong>
+  <%= @translate.translate %>
+</p>
+
+<p>
+  <strong>Learned:</strong>
+  <%= @translate.learned %>
+</p>
+
+<p>
+  <strong>Repeited:</strong>
+  <%= @translate.repeited %>
+</p>
+
+<%= link_to 'Edit', edit_translate_path(@translate) %> |
+<%= link_to 'Back', translates_path %>

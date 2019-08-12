@@ -1,0 +1,37 @@
+<%= form_for(translate) do |f| %>
+  <% if translate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(translate.errors.count, "error") %> prohibited this translate from being saved:</h2>
+
+      <ul>
+      <% translate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :word %>
+    <%= f.text_field :word %>
+  </div>
+
+  <div class="field">
+    <%= f.label :translate %>
+    <%= f.text_field :translate %>
+  </div>
+
+  <div class="field">
+    <%= f.label :learned %>
+    <%= f.check_box :learned %>
+  </div>
+
+  <div class="field">
+    <%= f.label :repeited %>
+    <%= f.number_field :repeited %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

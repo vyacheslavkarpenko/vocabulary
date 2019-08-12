@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  word: MyString
+  translate: MyString
+  learned: false
+  repeited: 1
+
+two:
+  word: MyString
+  translate: MyString
+  learned: false
+  repeited: 1

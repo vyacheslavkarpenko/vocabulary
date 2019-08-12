@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>NOT LEARNED</h1>
+
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Word</th>
+      <th scope="col">Translate</th>
+      <th scope="col">Learned</th>
+      <th scope="col">Repeited</th>
+      <th scope="col" colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @translates.each do |translate| %>
+    <tr>
+      <td><%= translate.word %></td>
+      <td><%= translate.translate %></td>
+      <td>
+        <% if translate.learned? %>
+          <%= link_to 'unknown', update_learned_path(id: translate.id, translate: { learned: false }), method: :put %>
+        <% else %>
+          <%= link_to 'learned', update_learned_path(id: translate.id, translate: { learned: true } ), method: :put %>
+        <% end %>
+      
+      </td>
+      <td>Repeited <%= translate.repeited %> times</td>
+      <td><%= link_to 'Show', translate %></td>
+      <td><%= link_to 'Edit', edit_translate_path(translate) %></td>
+      <td><%= link_to 'Destroy', translate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'ADD WORD', new_translate_path %>
