@@ -6,6 +6,7 @@ class Translate
   field :repeited, type: Integer
 
   validates :word, uniqueness: true
+  validates :word, :translate, presence: true
 
   def learn(arg)
     update(learned: arg)
