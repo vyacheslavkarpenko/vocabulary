@@ -11,6 +11,7 @@
     <%= link_to 'ALL', translates_path, class: 'nav-link' %>
     <%= link_to 'NOT LEARNED', not_learned_path, class: 'nav-link'  %>
     <%= link_to 'FOR REPEAT', for_repeat_path, class: 'nav-link'  %>
+    <%= render template: 'layouts/search_form' %>
   </nav>
   <body>
     <%= yield %>

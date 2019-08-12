@@ -1,0 +1,10 @@
+<%= form_for :translate, url: search_result_path do |f| %>
+
+<div class="field">
+  <%= f.text_field :word %>
+</div>
+
+<div class="actions">
+  <%= f.submit 'SEARCH' %>
+</div>
+<% end %>
