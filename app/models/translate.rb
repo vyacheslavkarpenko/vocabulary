@@ -1,6 +1,7 @@
 class Translate
   include Mongoid::Document
   field :word, type: String
+  field :transcription, type: String
   field :translate, type: String
   field :learned, type: Mongoid::Boolean
   field :repeited, type: Integer
