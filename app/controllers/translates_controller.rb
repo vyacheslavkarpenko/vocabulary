@@ -4,15 +4,18 @@ class TranslatesController < ApplicationController
   # GET /translates
   # GET /translates.json
   def index
-    @translates = Translate.all
+    page = params[:page] || 1
+    @translates = Translate.page(page).per(5)
   end
 
   def not_learned
-    @translates = Translate.where(learned: false)
+    page = params[:page] || 1
+    @translates = Translate.where(learned: false).page(page).per(5)
   end
 
   def for_repeat
-    @translates = Translate.where(learned: true)
+    page = params[:page] || 1
+    @translates = Translate.where(learned: true).page(page).per(5)
   end
   # GET /translates/1
   # GET /translates/1.json
@@ -43,7 +46,7 @@ class TranslatesController < ApplicationController
       end
     end
   end
-  
+
   # PATCH/PUT /translates/1
   # PATCH/PUT /translates/1.json
   def update
@@ -57,7 +60,7 @@ class TranslatesController < ApplicationController
       end
     end
   end
-  
+
   def update_learned
     argument = params[:translate][:learned]
     Translate.find(params[:id]).learn(argument)
@@ -69,11 +72,12 @@ class TranslatesController < ApplicationController
   end
 
   def search_result
+    page = params[:page] || 1
     selector = params[:translate][:word].downcase
     @translates = Translate.or( 
       { word: /.*#{selector}.*/ },
       { translate: /.*#{selector}.*/ }
-    )
+    ).page(page).per(5)
 
     respond_to do |format|
       if @translates.empty?
@@ -102,6 +106,6 @@ class TranslatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def translate_params
-      params.require(:translate).permit(:word, :translate, :learned, :repeited)
+      params.require(:translate).permit(:word, :transcription, :translate, :learned, :repeited)
     end
 end

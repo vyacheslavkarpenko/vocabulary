@@ -1,6 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Search result</h1>
+
+<h3>Search result <%= @translates.count %></h3>
+<p><%= link_to 'ADD WORD', new_translate_path %></p>
+<p>
+  <%= link_to_previous_page @translates, 'Previous Page' %>
+  <%= link_to_next_page @translates, 'Next Page' %>
+</p>
 
 <table class="table table-striped table-dark">
   <thead>
@@ -34,6 +40,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-<%= link_to 'ADD WORD', new_translate_path %>

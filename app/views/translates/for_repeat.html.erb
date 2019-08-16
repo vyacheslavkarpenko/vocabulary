@@ -1,11 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<h1>FOR REPEAT</h1>
+<h3>FOR REPEAT <%= @translates.count %></h3>
+<p><%= link_to 'ADD WORD', new_translate_path %></p>
+
+<p>
+  <%= link_to_previous_page @translates, 'Previous Page' %>
+  <%= link_to_next_page @translates, 'Next Page' %>
+</p>
 
 <table class="table table-striped table-dark">
   <thead>
     <tr>
       <th scope="col">Word</th>
+      <th scope="col">Transcription</th>
       <th scope="col">Translate</th>
       <th scope="col">Learned</th>
       <th scope="col">Repeited</th>
@@ -17,6 +24,7 @@
     <% @translates.each do |translate| %>
     <tr>
       <td><%= translate.word %></td>
+      <td><%= translate.transcription %></td>
       <td><%= translate.translate %></td>
       <td>
         <% if translate.learned? %>
@@ -35,7 +43,3 @@
 </table>
 
 <br>
-<%= link_to 'ADD WORD', new_translate_path %>
-
-<div id="test">
-</div>

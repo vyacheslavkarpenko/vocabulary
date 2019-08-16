@@ -1,7 +1,7 @@
-<%= form_for :translate, url: search_result_path do |f| %>
+<%= bootstrap_form_for :translate, url: search_result_path do |f| %>
 
 <div class="field">
-  <%= f.text_field :word %>
+  <%= f.text_field :word, hide_label: :true %>
 </div>
 
 <div class="actions">
