@@ -48,4 +48,8 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  ## configured to aviod MONGODB | Server description for localhost:27017 changed from 'standalone' to 'standalone'.
+  ## configured to aviod MONGODB | There was a change in the members of the 'Single' topology.
+  config.mongoid.logger.level = Logger::INFO
 end

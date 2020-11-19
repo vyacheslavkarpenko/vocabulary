@@ -25,6 +25,10 @@ Rails.application.configure do
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
 
+  ## configuration for assets when app started in prod
+  ## before use command in cli bundle exec rake assets:precompile or RAILS_ENV=production rake assets:precompile
+  config.serve_static_files = true
+
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
@@ -80,4 +84,8 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
+
+  ## configured to aviod MONGODB | Server description for localhost:27017 changed from 'standalone' to 'standalone'.
+  ## configured to aviod MONGODB | There was a change in the members of the 'Single' topology.
+  config.mongoid.logger.level = Logger::INFO
 end

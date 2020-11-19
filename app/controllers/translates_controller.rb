@@ -5,17 +5,17 @@ class TranslatesController < ApplicationController
   # GET /translates.json
   def index
     page = params[:page] || 1
-    @translates = Translate.page(page).per(5)
+    @translates = Translate.page(page).per(10)
   end
 
   def not_learned
     page = params[:page] || 1
-    @translates = Translate.where(learned: false).page(page).per(5)
+    @translates = Translate.where(learned: false).page(page).per(10)
   end
 
   def for_repeat
     page = params[:page] || 1
-    @translates = Translate.where(learned: true).page(page).per(5)
+    @translates = Translate.where(learned: true).page(page).per(10)
   end
   # GET /translates/1
   # GET /translates/1.json

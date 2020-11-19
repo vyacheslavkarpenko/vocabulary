@@ -1,9 +1,12 @@
 version: "3.8"
 services:
+
+# Mongo DB service
   mongodb:
     image: mongo:latest
     container_name: mongodb
-    hostname: mongodb
+    restart: unless-stopped
+#   hostname: mongodb
     volumes:
       - /var/lib/mongodb:/data/db
 #      - ./mongod.conf:/etc/mongod.conf
@@ -19,7 +22,28 @@ services:
 #      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
     ports:
       - "27018:27017"
+    networks:
+      - app-network
+
+  #Nginx Service
+  webserver:
+    image: nginx
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /var/www/:/var/www/
+    networks:
+      - app-network
+
+# Vocabulary Rails
   web:
+    hostname: rails_app
+    restart: unless-stopped
     build: .
     ports:
       - "3000:3000"
@@ -27,4 +51,10 @@ services:
     image: "wax2"
     depends_on:
       - mongodb
+    networks:
+      - app-network
 
+# Docker Networks
+networks:
+  app-network:
+    driver: bridge
