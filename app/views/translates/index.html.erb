@@ -1,7 +1,5 @@
 <p id="notice"><%= notice %></p>
 <h3>All words <%= @translates.count %></h3>
-<p><%= link_to 'ADD WORD', new_translate_path %></p>
-
 <p>
 <%= link_to_previous_page @translates, 'Previous Page' %>
 <%= link_to_next_page @translates, 'Next Page' %>
