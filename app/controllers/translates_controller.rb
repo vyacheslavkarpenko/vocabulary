@@ -62,8 +62,12 @@ class TranslatesController < ApplicationController
   end
 
   def update_learned
-    argument = params[:translate][:learned]
-    Translate.find(params[:id]).learn(argument)
+    translate = Translate.find(params[:id])
+    if params[:translate][:learned] == 'false'
+      translate.update(learned: false, repeited: 0)
+    else
+      translate.update(learned: true, repeited: translate.repeited += 1)
+    end
   end
 
   def update_repeited

@@ -20,7 +20,7 @@ VOLUME $RAILS_ROOT/log
 
 EXPOSE 3000
 # precompile asset
-CMD ["RAILS_ENV=production", "rake", "assets:precompile"]
+RUN RAILS_ENV=production bundle exec rake assets:precompile
 
 # Start the main process.
 CMD ["rails", "server", "-b", "0.0.0.0", "-e", "$RAILS_ENV"]
