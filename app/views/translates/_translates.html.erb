@@ -1,0 +1,43 @@
+<p>
+  <%= link_to_previous_page @translates, 'Previous Page' %>
+  <%= link_to_next_page @translates, 'Next Page' %>
+</p>
+
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Word</th>
+      <th scope="col">Transcription</th>
+      <th scope="col">Translate</th>
+      <th scope="col">Learned</th>
+      <th scope="col">Repeited</th>
+      <th scope="col" colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @translates.each do |translate| %>
+    <tr>
+      <td><%= translate.word %></td>
+      <td><%= translate.transcription %></td>
+      <td><%= translate.translate %></td>
+      <td>
+        <%= if translate.learned?
+            button_to 'Unknown', update_learned_path(id: translate.id, translate: { learned: false }), { :class =>'btn btn-warning', method: :put, remote: :true }
+         else
+            button_to 'Learned', update_learned_path(id: translate.id, translate: { learned: true } ), { :class =>'btn btn-warning', method: :put, remote: :true }
+         end %>
+      </td>
+      <td>
+      <%= if translate.learned?
+        button_to "Push if repeited \n (#{translate.repeited.to_i + 1} times repeited)", update_repeited_path(id: translate.id, translate: { repeited: (translate.repeited.to_i + 1) }), {method: :put, remote: true, :class =>'btn btn-success' }
+      end %></td>
+      <td><%= button_to 'Show', translate, { method: :get, :class =>'btn btn-info' } %></td>
+      <td><%= button_to 'Edit', edit_translate_path(translate), { method: :get, :class =>'btn btn-secondary' } %></td>
+      <td><%= button_to 'Destroy', translate, { method: :delete, :class =>'btn btn-danger', data: { confirm: 'Are you sure?' }} %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
